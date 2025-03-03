@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모던 UI 디자인 키트</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            background-color: white;
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .section-title {
+            margin-bottom: 25px;
+            font-size: 26px;
+            font-weight: 600;
+            color: #333;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            background-color: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .header:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header h1 {
+            font-size: 38px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            font-size: 20px;
+            color: #666;
+        }
+        
+        /* 버튼 스타일 */
+        .btn {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin: 10px 10px 10px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+            font-weight: bold;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn:hover {
+            background-color: #005BDD;
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            background-color: #0026a3;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-large {
+            width: 600px;
+            height: 61px;
+            font-size: 30px;
+        }
+        
+        .btn-medium {
+            height: 45px;
+            font-size: 18px;
+            padding: 0 25px;
+        }
+        
+        .btn-small {
+            height: 36px;
+            font-size: 14px;
+            padding: 0 15px;
+            border-radius: 18px;
+        }
+        
+        .btn-round {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            padding: 0;
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        
+        .btn-warning {
+            background-color: #ffc107;
+            color: #333;
+        }
+        
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #007BFF;
+            color: #007BFF;
+        }
+        
+        .btn-outline:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+        
+        .btn-icon {
+            margin-right: 8px;
+        }
+        
+        .btn-group {
+            display: flex;
+            margin: 10px 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-group .btn {
+            border-radius: 0;
+            margin: 0;
+            box-shadow: none;
+            flex: 1;
+        }
+        
+        .btn-group .btn:first-child {
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+        
+        .btn-group .btn:last-child {
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        
+        /* 카드 스타일 */
+        .card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .card-highlight {
+            border-top: 5px solid #007BFF;
+        }
+        
+        .card-header {
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .card-footer {
+            padding-top: 15px;
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover .card-img {
+            transform: scale(1.02);
+        }
+        
+        /* 입력 필드 스타일 */
+        .input-group {
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .input-group label {
+            display: block;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .input-field {
+            width: 100%;
+            height: 61px;
+            border-radius: 20px;
+            border: none;
+            padding: 0 20px;
+            font-size: 18px;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3), 0 4px 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .input-field::placeholder {
+            color: #aaa;
+        }
+        
+        .input-field-success {
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2), 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .input-field-error {
+            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2), 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 20px;
+            color: #007BFF;
+            font-size: 20px;
+        }
+        
+        .input-with-icon .input-field {
+            padding-left: 50px;
+        }
+        
+        .textarea-field {
+            width: 100%;
+            min-height: 150px;
+            border-radius: 20px;
+            border: none;
+            padding: 15px 20px;
+            font-size: 16px;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            resize: vertical;
+        }
+        
+        .textarea-field:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3), 0 4px 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* 폼 관련 스타일 */
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-col {
+            flex: 1;
+        }
+        
+        .form-hint {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-top: 8px;
+        }
+        
+        .form-error {
+            display: block;
+            font-size: 14px;
+            color: #dc3545;
+            margin-top: 8px;
+        }
+        
+        .form-success {
+            display: block;
+            font-size: 14px;
+            color: #28a745;
+            margin-top: 8px;
+        }
+        
+        /* 체크박스 스타일 */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .checkbox-container {
+            position: relative;
+            padding-left: 35px;
+            margin-right: 20px;
+            cursor: pointer;
+            font-size: 18px;
+            user-select: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .checkbox-container:hover {
+            color: #007BFF;
+        }
+        
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .checkbox-container:hover input ~ .checkmark {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+        
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: #007BFF;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.4);
+        }
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        .checkbox-container .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        /* 라디오 버튼 스타일 */
+        .radio-group {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .radio-container {
+            position: relative;
+            padding-left: 35px;
+            margin-right: 20px;
+            cursor: pointer;
+            font-size: 18px;
+            user-select: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .radio-container:hover {
+            color: #007BFF;
+        }
+        
+        .radio-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        
+        .radio-checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .radio-container:hover input ~ .radio-checkmark {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+        
+        .radio-container input:checked ~ .radio-checkmark {
+            background-color: #fff;
+            box-shadow: 0 0 0 2px #007BFF, 0 2px 8px rgba(0, 123, 255, 0.3);
+        }
+        
+        .radio-checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .radio-container input:checked ~ .radio-checkmark:after {
+            display: block;
+        }
+        
+        .radio-container .radio-checkmark:after {
+            top: 9px;
+            left: 9px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #007BFF;
+        }
+        
+        /* 토글 스위치 스타일 */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin-right: 15px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        input:checked + .slider {
+            background-color: #007BFF;
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .toggle-label {
+            font-size: 18px;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .switch:hover + .toggle-label {
+            color: #007BFF;
+        }
+        
+        /* 알림 메시지 스타일 */
+        .alert {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .alert:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .alert-icon {
+            margin-right: 15px;
+            font-size: 24px;
+        }
+        
+        .alert-content {
+            flex: 1;
+        }
+        
+        .alert-close {
+            font-size: 20px;
+            color: #999;
+            cursor: pointer;
+            padding: 0 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .alert-close:hover {
+            color: #333;
+            transform: rotate(90deg);
+        }
+        
+        .alert-info {
+            background-color: rgba(0, 123, 255, 0.1);
+            color: #007BFF;
+        }
+        
+        .alert-success {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+        
+        .alert-warning {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: #856404;
+        }
+        
+        .alert-danger {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+        }
+        
+        /* 배지 스타일 */
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 2px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .badge-primary {
+            background-color: #007BFF;
+            color: white;
+        }
+        
+        .badge-success {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .badge-warning {
+            background-color: #ffc107;
+            color: #333;
+        }
+        
+        .badge-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .badge-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+        
+        /* 진행 상태 표시줄 스타일 */
+        .progress-container {
+            width: 100%;
+            max-width: 600px;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .progress-container:hover {
+            transform: translateY(-2px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 75%;
+            background-color: #007BFF;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+        
+        .progress-success {
+            background-color: #28a745;
+        }
+        
+        .progress-warning {
+            background-color: #ffc107;
+        }
+        
+        .progress-danger {
+            background-color: #dc3545;
+        }
+        
+        .progress-striped {
+            background-image: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.15) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.15) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                transparent 75%,
+                transparent
+            );
+            background-size: 20px 20px;
+            animation: progress-animation 1s linear infinite;
+        }
+        
+        @keyframes progress-animation {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 20px 0;
+            }
+        }
+        
+        /* 스피너 스타일 (누락된 부분 추가) */
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin: 10px;
+            border: 4px solid rgba(0, 123, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: #007BFF;
+            animation: spin 1s ease-in-out infinite;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .spinner-sm {
+            width: 25px;
+            height: 25px;
+            border-width: 2px;
+        }
+        
+        .spinner-lg {
+            width: 60px;
+            height: 60px;
+            border-width: 6px;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* 툴팁 스타일 */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        .tooltip-content {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            padding: 12px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tooltip-content::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -10px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltip-content {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* 모달 스타일 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background-color: white;
+            border-radius: 25px;
+            padding: 30px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            transform: translateY(-50px) scale(0.95);
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal {
+            transform: translateY(0) scale(1);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background-color: #f5f5f7;
+            color: #007BFF;
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            margin-bottom: 20px;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        /* 내비게이션바 스타일 (누락된 부분 추가) */
+        .navbar {
+            width: 100%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 0 20px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            height: 70px;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand:hover {
+            color: #007BFF;
+        }
+        
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin: 0 10px;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #666;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #007BFF;
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+        
+        .nav-link.active {
+            color: #007BFF;
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+        
+        /* 탭 스타일 */
+        .tabs {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+        
+        .tab-header {
+            display: flex;
+            margin-bottom: 20px;
+            background-color: #f7f7f7;
+            border-radius: 20px;
+            padding: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tab-header:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tab-btn {
+            padding: 15px 30px;
+            background: none;
+            border: none;
+            width: auto;
+            height: auto;
+            font-size: 18px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: none;
+            margin: 0;
+            border-radius: 15px;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .tab-btn:hover:not(.active) {
+            background-color: rgba(0, 123, 255, 0.1);
+            color: #007BFF;
+        }
+        
+        .tab-btn.active {
+            color: white;
+            background-color: #007BFF;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tab-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tab-content:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tab-panel {
+            display: none;
+        }
+        
+        .tab-panel.active {
+            display: block;
+        }
+        
+        /* 드롭다운 스타일 */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-toggle {
+            padding-right: 35px;
+            position: relative;
+        }
+        
+        .dropdown-toggle::after {
+            content: "";
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid white;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown.active .dropdown-toggle::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            min-width: 200px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            padding: 10px 0;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f5f5f5;
+            color: #007BFF;
+            padding-left: 25px;
+        }
+        
+        .dropdown-divider {
+            height: 1px;
+            background-color: #eee;
+            margin: 8px 0;
+        }
+        
+        /* 아코디언 스타일 */
+        .accordion {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+        
+        .accordion-item {
+            margin-bottom: 15px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .accordion-header {
+            background-color: white;
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+        }
+        
+        .accordion-header:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .accordion-title {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .accordion-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-icon::before,
+        .accordion-icon::after {
+            content: "";
+            position: absolute;
+            background-color: #007BFF;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-icon::before {
+            width: 2px;
+            height: 12px;
+        }
+        
+        .accordion-icon::after {
+            width: 12px;
+            height: 2px;
+        }
+        
+        .accordion-item.active .accordion-icon::before {
+            transform: translate(-50%, -50%) rotate(90deg);
+            opacity: 0;
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            background-color: white;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-content {
+            max-height: 300px;
+            padding: 20px;
+        }
+        
+        /* 페이지네이션 스타일 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .page-item {
+            margin: 0 5px;
+        }
+        
+        .page-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: white;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .page-link:hover {
+            background-color: #f5f5f5;
+            color: #007BFF;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .page-item.active .page-link {
+            background-color: #007BFF;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
+        
+        .page-item.disabled .page-link {
+            color: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        /* 리스트 그룹 스타일 */
+        .list-group {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .list-group:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .list-item {
+            padding: 18px 20px;
+            background-color: white;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .list-item:last-child {
+            border-bottom: none;
+        }
+        
+        .list-item:hover {
+            background-color: #f9f9f9;
+            padding-left: 25px;
+        }
+        
+        .list-item.active {
+            background-color: #007BFF;
+            color: white;
+        }
+        
+        .list-item-action {
+            cursor: pointer;
+        }
+        
+        .list-item-icon {
+            margin-right: 15px;
+            color: #007BFF;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .list-item:hover .list-item-icon {
+            transform: scale(1.2);
+        }
+        
+        .list-item-content {
+            flex: 1;
+        }
+        
+        .list-item-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .list-item-text {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .list-item.active .list-item-text {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* 카드 그리드 스타일 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+        
+        .card-grid .card {
+            width: 100%;
+            margin: 0;
+        }
+        
+        /* 타임라인 스타일 */
+        .timeline {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            height: 100%;
+            width: 3px;
+            background-color: #007BFF;
+            border-radius: 3px;
+            opacity: 0.3;
+        }
+        
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 60px;
+        }
+        
+        .timeline-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: #007BFF;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 20px;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-badge {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+        }
+        
+        .timeline-content {
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #007BFF;
+        }
+        
+        .timeline-date {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        /* 테이블 스타일 */
+        .table-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .table-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        
+        .table th,
+        .table td {
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .table th {
+            background-color: #f5f5f7;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .table tr {
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .table-striped tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .table-hover tr:hover {
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+        
+        /* 파일 업로드 스타일 */
+        .file-upload {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+        
+        .file-upload-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            border: 2px dashed #ccc;
+            border-radius: 20px;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .file-upload-label:hover {
+            border-color: #007BFF;
+            background-color: rgba(0, 123, 255, 0.05);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .file-upload-icon {
+            font-size: 40px;
+            color: #007BFF;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload-label:hover .file-upload-icon {
+            transform: scale(1.1);
+        }
+        
+        .file-upload-text {
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload-label:hover .file-upload-text {
+            color: #007BFF;
+        }
+        
+        .file-upload-input {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>모던 UI 디자인 키트</h1>
+            <p>대형 프로젝트에서 활용 가능한 완성된 UI 컴포넌트 모음</p>
+        </div>
+        
+        <!-- 버튼 섹션 -->
+        <div class="section">
+            <h2 class="section-title">버튼</h2>
+            
+            <button class="btn btn-large">주요 버튼</button>
+            
+            <div>
+                <button class="btn btn-medium">중간 크기</button>
+                <button class="btn btn-small">작은 크기</button>
+                <button class="btn btn-round">+</button>
+            </div>
+            
+            <div>
+                <button class="btn btn-medium">기본</button>
+                <button class="btn btn-medium btn-success">성공</button>
+                <button class="btn btn-medium btn-danger">위험</button>
+                <button class="btn btn-medium btn-warning">경고</button>
+                <button class="btn btn-medium btn-outline">외곽선</button>
+            </div>
+            
+            <div>
+                <button class="btn btn-medium"><span class="btn-icon">👍</span> 좋아요</button>
+                <button class="btn btn-medium"><span class="btn-icon">💾</span> 저장</button>
+                <button class="btn btn-medium"><span class="btn-icon">🔍</span> 검색</button>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn">왼쪽</button>
+                <button class="btn">중간</button>
+                <button class="btn">오른쪽</button>
+            </div>
+        </div>
+        
+        <!-- 카드 섹션 -->
+        <div class="section">
+            <h2 class="section-title">카드</h2>
+            
+            <div class="card">
+                <h2>기본 카드</h2>
+                <p>다양한 콘텐츠를 담을 수 있는 카드 컴포넌트입니다.</p>
+            </div>
+            
+            <div class="card card-highlight">
+                <div class="card-header">
+                    <h2>헤더가 있는 카드</h2>
+                </div>
+                <p>카드 헤더와 푸터를 포함한 확장 카드 컴포넌트입니다.</p>
+                <div class="card-footer">
+                    <button class="btn btn-small">더 보기</button>
+                </div>
+            </div>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h2>그리드 카드 1</h2>
+                    <p>여러 개의 카드를 그리드로 배치할 수 있습니다.</p>
+                </div>
+                <div class="card">
+                    <h2>그리드 카드 2</h2>
+                    <p>여러 개의 카드를 그리드로 배치할 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 폼 요소 섹션 -->
+        <div class="section">
+            <h2 class="section-title">폼 요소</h2>
+            
+            <div class="input-group">
+                <label for="username">사용자 이름</label>
+                <input type="text" id="username" class="input-field" placeholder="사용자 이름을 입력하세요">
+            </div>
+            
+            <div class="input-group">
+                <label for="email">이메일</label>
+                <div class="input-with-icon">
+                    <span class="input-icon">✉️</span>
+                    <input type="email" id="email" class="input-field" placeholder="이메일을 입력하세요">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="input-group">
+                        <label for="first-name">이름</label>
+                        <input type="text" id="first-name" class="input-field" placeholder="이름">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="input-group">
+                        <label for="last-name">성</label>
+                        <input type="text" id="last-name" class="input-field" placeholder="성">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" class="input-field" placeholder="비밀번호를 입력하세요">
+                <span class="form-hint">8자 이상, 특수문자 포함</span>
+            </div>
+            
+            <div class="input-group">
+                <label for="message">메시지</label>
+                <textarea id="message" class="textarea-field" placeholder="메시지를 입력하세요"></textarea>
+            </div>
+            
+            <div class="checkbox-group">
+                <label class="checkbox-container">이용약관에 동의합니다
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            
+            <div class="radio-group">
+                <label class="radio-container">옵션 A
+                    <input type="radio" name="options" checked="checked">
+                    <span class="radio-checkmark"></span>
+                </label>
+                <label class="radio-container">옵션 B
+                    <input type="radio" name="options">
+                    <span class="radio-checkmark"></span>
+                </label>
+            </div>
+            
+            <div class="checkbox-group">
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">알림 설정</span>
+            </div>
+            
+            <div>
+                <div class="file-upload">
+                    <label for="file-upload-input" class="file-upload-label">
+                        <span class="file-upload-icon">📎</span>
+                        <span class="file-upload-text">파일을 드래그하거나 클릭하여 업로드</span>
+                    </label>
+                    <input type="file" id="file-upload-input" class="file-upload-input">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 알림 섹션 -->
+        <div class="section">
+            <h2 class="section-title">알림 및 피드백</h2>
+            
+            <div class="alert alert-info">
+                <span class="alert-icon">ℹ️</span>
+                <div class="alert-content">
+                    <p>정보: 이것은 정보 알림입니다.</p>
+                </div>
+                <span class="alert-close">&times;</span>
+            </div>
+            
+            <div class="alert alert-success">
+                <span class="alert-icon">✅</span>
+                <div class="alert-content">
+                    <p>성공: 작업이 완료되었습니다.</p>
+                </div>
+                <span class="alert-close">&times;</span>
+            </div>
+            
+            <div class="alert alert-warning">
+                <span class="alert-icon">⚠️</span>
+                <div class="alert-content">
+                    <p>경고: 주의가 필요합니다.</p>
+                </div>
+                <span class="alert-close">&times;</span>
+            </div>
+            
+            <div class="alert alert-danger">
+                <span class="alert-icon">❌</span>
+                <div class="alert-content">
+                    <p>오류: 문제가 발생했습니다.</p>
+                </div>
+                <span class="alert-close">&times;</span>
+            </div>
+            
+            <div>
+                <span class="badge badge-primary">Primary</span>
+                <span class="badge badge-success">Success</span>
+                <span class="badge badge-warning">Warning</span>
+                <span class="badge badge-danger">Danger</span>
+                <span class="badge badge-info">Info</span>
+            </div>
+            
+            <div>
+                <div class="tooltip">
+                    <button class="btn btn-small">도움말</button>
+                    <div class="tooltip-content">이것은 툴팁입니다. 추가 정보를 제공합니다.</div>
+                </div>
+            </div>
+            
+            <div>
+                <button class="btn btn-medium" id="open-modal">모달 열기</button>
+            </div>
+        </div>
+        
+        <!-- 진행 표시 섹션 -->
+        <div class="section">
+            <h2 class="section-title">진행 상태 표시</h2>
+            
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar progress-success" style="width: 45%"></div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar progress-warning progress-striped" style="width: 65%"></div>
+            </div>
+            
+            <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
+                <div class="spinner spinner-sm"></div>
+                <div class="spinner"></div>
+                <div class="spinner spinner-lg"></div>
+            </div>
+        </div>
+        
+        <!-- 네비게이션 섹션 -->
+        <div class="section">
+            <h2 class="section-title">네비게이션</h2>
+            
+            <div class="navbar">
+                <a href="#" class="navbar-brand">로고</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="#" class="nav-link active">홈</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">제품</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">서비스</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">소개</a></li>
+                </ul>
+            </div>
+            
+            <div class="tabs">
+                <div class="tab-header">
+                    <button class="tab-btn active" onclick="openTab(event, 'tab1')">첫 번째 탭</button>
+                    <button class="tab-btn" onclick="openTab(event, 'tab2')">두 번째 탭</button>
+                    <button class="tab-btn" onclick="openTab(event, 'tab3')">세 번째 탭</button>
+                </div>
+                
+                <div id="tab1" class="tab-panel active">
+                    <p>첫 번째 탭의 내용입니다. 여기에 원하는 정보를 표시할 수 있습니다.</p>
+                </div>
+                
+                <div id="tab2" class="tab-panel">
+                    <p>두 번째 탭의 내용입니다. 다양한 콘텐츠를 탭 형식으로 구성할 수 있습니다.</p>
+                </div>
+                
+                <div id="tab3" class="tab-panel">
+                    <p>세 번째 탭의 내용입니다. 사용자가 필요한 정보만 선택적으로 볼 수 있습니다.</p>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <div class="page-item">
+                    <a href="#" class="page-link">&laquo;</a>
+                </div>
+                <div class="page-item">
+                    <a href="#" class="page-link">1</a>
+                </div>
+                <div class="page-item active">
+                    <a href="#" class="page-link">2</a>
+                </div>
+                <div class="page-item">
+                    <a href="#" class="page-link">3</a>
+                </div>
+                <div class="page-item">
+                    <a href="#" class="page-link">&raquo;</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <button class="btn btn-medium dropdown-toggle" id="dropdown-toggle">드롭다운</button>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="#" class="dropdown-item">메뉴 항목 1</a>
+                    <a href="#" class="dropdown-item">메뉴 항목 2</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">메뉴 항목 3</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 컨텐츠 구성 섹션 -->
+        <div class="section">
+            <h2 class="section-title">컨텐츠 구성</h2>
+            
+            <div class="accordion">
+                <div class="accordion-item" id="accordion-item-1">
+                    <div class="accordion-header" onclick="toggleAccordion('accordion-item-1')">
+                        <div class="accordion-title">아코디언 항목 1</div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <p>아코디언의 첫 번째 항목에 대한 상세 내용입니다. 여기에 다양한 정보를 넣을 수 있습니다.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item" id="accordion-item-2">
+                    <div class="accordion-header" onclick="toggleAccordion('accordion-item-2')">
+                        <div class="accordion-title">아코디언 항목 2</div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <p>아코디언의 두 번째 항목에 대한 상세 내용입니다. 접었다 펼 수 있는 UI 요소입니다.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="list-group">
+                <div class="list-item list-item-action">
+                    <div class="list-item-icon">📄</div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">목록 항목 1</div>
+                        <div class="list-item-text">첫 번째 항목에 대한 설명입니다.</div>
+                    </div>
+                </div>
+                <div class="list-item list-item-action active">
+                    <div class="list-item-icon">📄</div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">목록 항목 2</div>
+                        <div class="list-item-text">두 번째 항목에 대한 설명입니다.</div>
+                    </div>
+                </div>
+                <div class="list-item list-item-action">
+                    <div class="list-item-icon">📄</div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">목록 항목 3</div>
+                        <div class="list-item-text">세 번째 항목에 대한 설명입니다.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-badge">1</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">첫 번째 이벤트</div>
+                        <div class="timeline-date">2023년 1월 1일</div>
+                        <p>첫 번째 타임라인 이벤트에 대한 설명입니다.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-badge">2</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">두 번째 이벤트</div>
+                        <div class="timeline-date">2023년 2월 1일</div>
+                        <p>두 번째 타임라인 이벤트에 대한 설명입니다.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-badge">3</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">세 번째 이벤트</div>
+                        <div class="timeline-date">2023년 3월 1일</div>
+                        <p>세 번째 타임라인 이벤트에 대한 설명입니다.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>이름</th>
+                            <th>이메일</th>
+                            <th>상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>홍길동</td>
+                            <td>hong@example.com</td>
+                            <td><span class="badge badge-success">활성</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>김철수</td>
+                            <td>kim@example.com</td>
+                            <td><span class="badge badge-warning">대기</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>이영희</td>
+                            <td>lee@example.com</td>
+                            <td><span class="badge badge-danger">비활성</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript 코드 -->
+    <script>
+        // 탭 기능 구현
+        function openTab(evt, tabId) {
+            // 모든 탭 내용 숨기기
+            var tabContents = document.getElementsByClassName("tab-panel");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // 모든 탭 버튼 비활성화
+            var tabButtons = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            // 선택한 탭 활성화
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        // 아코디언 기능 구현
+        function toggleAccordion(id) {
+            var accordionItem = document.getElementById(id);
+            accordionItem.classList.toggle("active");
+        }
+        
+        // 드롭다운 토글 기능
+        var dropdownToggle = document.getElementById('dropdown-toggle');
+        if (dropdownToggle) {
+            dropdownToggle.addEventListener('click', function() {
+                var dropdown = this.parentElement;
+                dropdown.classList.toggle('active');
+            });
+            
+            // 외부 클릭시 드롭다운 닫기
+            document.addEventListener('click', function(e) {
+                if (!e.target.matches('#dropdown-toggle') && !e.target.closest('.dropdown-menu')) {
+                    var dropdowns = document.querySelectorAll('.dropdown');
+                    dropdowns.forEach(function(dropdown) {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+        }
+        
+        // 모달 기능 구현
+        var openModalBtn = document.getElementById('open-modal');
+        if (openModalBtn) {
+            openModalBtn.addEventListener('click', function() {
+                var modalOverlay = document.createElement('div');
+                modalOverlay.className = 'modal-overlay';
+                
+                var modalHtml = `
+                    <div class="modal">
+                        <div class="modal-header">
+                            <div class="modal-title">모달 제목</div>
+                            <button class="modal-close">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>모달 내용이 여기에 표시됩니다. 다양한 콘텐츠를 포함할 수 있습니다.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-medium btn-outline modal-cancel">취소</button>
+                            <button class="btn btn-medium">확인</button>
+                        </div>
+                    </div>
+                `;
+                
+                modalOverlay.innerHTML = modalHtml;
+                document.body.appendChild(modalOverlay);
+                
+                // 모달 표시 (약간의 지연을 주어 트랜지션 효과 활성화)
+                setTimeout(function() {
+                    modalOverlay.classList.add('active');
+                }, 10);
+                
+                // 모달 닫기 기능
+                var closeBtn = modalOverlay.querySelector('.modal-close');
+                var cancelBtn = modalOverlay.querySelector('.modal-cancel');
+                
+                function closeModal() {
+                    modalOverlay.classList.remove('active');
+                    setTimeout(function() {
+                        document.body.removeChild(modalOverlay);
+                    }, 300);
+                }
+                
+                closeBtn.addEventListener('click', closeModal);
+                cancelBtn.addEventListener('click', closeModal);
+                
+                // 외부 클릭 시 모달 닫기
+                modalOverlay.addEventListener('click', function(e) {
+                    if (e.target === modalOverlay) {
+                        closeModal();
+                    }
+                });
+            });
+        }
+        
+        // 알림 닫기 기능
+        var alertCloseButtons = document.querySelectorAll('.alert-close');
+        alertCloseButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var alert = this.parentElement;
+                alert.style.opacity = '0';
+                setTimeout(function() {
+                    alert.style.display = 'none';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
